@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(uuid())
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  email        String      @unique
+  name         String?
+  isDeleted       Boolean     @default(false)
+  Department   Department? @relation(fields: [departmentId], references: [id])
+  departmentId String?
+  role         ROLE        @default(USER)
+
+  @@map("users")
+}
+
+model Department {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  User      User[]
+
+  @@map("department")
+}
+
+model Product {
+  id            String       @id @default(uuid())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  name          String       @unique
+  isDeleted        Boolean      @default(false)
+  price         Int?
+  quantity      Int?
+  TypeProduct   TypeProduct? @relation(fields: [typeProductId], references: [id])
+  typeProductId String?
+
+  @@map("products")
+}
+
+model TypeProduct {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  name      String    @unique
+  Product   Product[]
+
+  @@map("type_products")
+}
+
+enum ROLE {
+  ADMIN
+  USER
+}

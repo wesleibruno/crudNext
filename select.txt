@@ -1,0 +1,43 @@
+{/* <label>Department</label>
+          <input
+            type="text"
+            value={departmentInput}
+            onChange={(e) => setDepartmentInput(e.target.value)}
+            className="form-control"
+            placeholder="Enter email"
+          /> */}
+          {/* <Select
+            className="select"
+            
+            // onChange={(item) => setDepartmentInput(item)}
+            options={departmentInput.map((item: any) => {
+              console.log(item);
+              return { value: item.id, label: item.name };
+            })}
+          /> */}
+
+          {/* <select name="" id="">
+            <option
+              value={departmentInput.map((item: any) => {
+                console.log(item);
+                return item.id + " " + item.name;
+              })}
+            >
+              {departmentInput.map((item: any) => {
+                return item.name + " <br/>";
+              })}
+            </option>
+          </select> */}
+{/* 
+          <select className="select" id="">
+            {departmentInput.map((item: any) => {
+              return (
+                <option
+                  onChange={(e:any) => setDepartmentInput(e.target.value)}
+                  value={item.id}
+                >
+                  {item.name}
+                </option>
+              );
+            })}
+          </select> */}
