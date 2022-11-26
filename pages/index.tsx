@@ -1,5 +1,12 @@
+import Button from "./../src/components/Button";
+
 const Home = () => {
-  return <div className="container">Home</div>;
+  return (
+    <div>
+      <div className="container">Home</div>
+      <Button />
+    </div>
+  );
 };
 
 export default Home;

@@ -1,34 +1,22 @@
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { paginate } from "../../libs/paginate";
 import Pagination from "../../src/components/Pagination";
-import api from "../../libs/api";
 import { User } from "../../types/User";
 
-type Props = {
-  usersTeste: User[];
-};
-
-const Home = ({ usersTeste }: Props) => {
+const Home = () => {
   const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 2;
 
   useEffect(() => {
     getUsers();
-  }, []);
-
-  // setUsers(usersTeste.map((user:User) => (
-  //   {user.length}
-  // );
+  }, [pageSize]);
 
   const getUsers = async () => {
     const { data: res } = await axios.get("http://localhost:3000/api/users");
     setUsers(res);
-    // console.log(res);
   };
 
   //deleUser api
@@ -62,27 +50,6 @@ const Home = ({ usersTeste }: Props) => {
           </Link>
         </div>
       </div>
-      {/* {usersTeste.map((user: User) => (
-        <div key={user.id} className="row">
-          <div className="col-12">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{user.name}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">
-                  {user.email}
-                </h6>
-                <p className="card-text">{user.Department.name}</p>
-                <Link href={`/users/${encodeURIComponent(user.id)}`}>
-                  <button className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Edit
-                  </button>
-                </Link>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      ))} */}
       <table className="table">
         <thead>
           <tr>
@@ -102,7 +69,7 @@ const Home = ({ usersTeste }: Props) => {
                 <Link href={`users/${user.id}`}>
                   <button
                     onClick={() => {
-                      setUserId(user.id);
+                      user.id;
                     }}
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                   >
@@ -118,9 +85,7 @@ const Home = ({ usersTeste }: Props) => {
                   </button>
                 </Link>
               </td>
-              <td>
-                
-              </td>
+              <td></td>
             </tr>
           ))}
         </tbody>
@@ -135,13 +100,4 @@ const Home = ({ usersTeste }: Props) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  const usersTeste = await api.getAllUsers(0);
-
-  return {
-    props: {
-      usersTeste,
-    },
-  };
-};
 export default Home;

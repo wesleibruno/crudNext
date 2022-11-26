@@ -2,25 +2,27 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { User } from "../../types/User";
 
-const Edit = () => {
+const Edit = ({ user }: { user: User }) => {
   const router = useRouter();
   const userId = router.query.id;
-  // console.log(userId);
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [departmentInput, setDepartmentInput] = useState([]);
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    const getDepart = async () => {
-      const { data: res } = await axios.get(
-        "http://localhost:3000/api/departments"
-      );
-      setDepartmentInput(res);
-    };
     getDepart();
+    getUsers();
   }, []);
+
+  const getDepart = async () => {
+    const { data: res } = await axios.get(
+      "http://localhost:3000/api/departments"
+    );
+    setDepartmentInput(res);
+  };
 
   const getUsers = async () => {
     const res = await fetch(`http://localhost:3000/api/users/${userId}`);
@@ -34,10 +36,6 @@ const Edit = () => {
       setDepartments(data.departmentId);
     }
   };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
 
   const handleSaveForm = async () => {
     if (nameInput && emailInput && departmentInput) {
@@ -119,5 +117,33 @@ const Edit = () => {
     </div>
   );
 };
+
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:3000/api/users");
+  const data = await res.json();
+  const paths = data.map((user: User) => {
+    return {
+      params: {
+        id: user.id.toString(),
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context: any) {
+  const { params } = context;
+  const res = await fetch(`http://localhost:3000/api/users/${params.id}`);
+  const user = await res.json();
+  return {
+    props: {
+      user,
+    },
+  };
+}
 
 export default Edit;

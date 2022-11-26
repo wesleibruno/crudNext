@@ -17,11 +17,11 @@ const handlerGet: NextApiHandler = async (req, res) => {
   });
 
   if (!user) {
-    res.status(404).json({ message: `User with id ${id} not found` });
+    res.json({ message: `User with id ${id} not found` });
     return;
   }
 
-  res.json(user);
+  res.status(200).json(user);
 };
 
 const handlerPost: NextApiHandler = async (req, res) => {
@@ -109,7 +109,6 @@ const handlerPut: NextApiHandler = async (req, res) => {
 
   res.json({ error: `User with id ${id} not found` });
 };
-
 
 // const handlerDelete: NextApiHandler = async (req, res) => {
 //   const { id } = req.query;
