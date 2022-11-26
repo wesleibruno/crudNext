@@ -8,19 +8,19 @@ const handlerGet: NextApiHandler = async (req, res) => {
     where: {
       id: id as string,
     },
-    select: {
-      id: true,
-      name: true,
-      products: {
-        where: {
-          id: id as string,
-        },
-        select: {
-          id: true,
-          name: true,
-        },
-      },
-    },
+    // select: {
+    //   id: true,
+    //   name: true,
+    //   products: {
+    //     where: {
+    //       id: id as string,
+    //     },
+    //     select: {
+    //       id: true,
+    //       name: true,
+    //     },
+    //   },
+    // },
   });
 
   if (!typeProduct) {

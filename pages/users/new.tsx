@@ -8,7 +8,7 @@ const New = () => {
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [departmentInput, setDepartmentInput] = useState([]);
-  const [departments, setDepartments] = useState([]);
+  const [departments, setDepartments] = useState();
 
   useEffect(() => {
     const getDepart = async () => {

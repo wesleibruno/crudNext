@@ -1,16 +1,17 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
+import React from "react";
 import { User } from "../../types/User";
 
 const Edit = ({ user }: { user: User }) => {
   const router = useRouter();
   const userId = router.query.id;
-  const [nameInput, setNameInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
+  const [nameInput, setNameInput] = useState(user.name);
+  const [emailInput, setEmailInput] = useState(user.email);
   const [departmentInput, setDepartmentInput] = useState([]);
-  const [departments, setDepartments] = useState([]);
+  const [departments, setDepartments] = useState();
 
   useEffect(() => {
     getDepart();
@@ -39,7 +40,7 @@ const Edit = ({ user }: { user: User }) => {
 
   const handleSaveForm = async () => {
     if (nameInput && emailInput && departmentInput) {
-      const { data: res } = await axios.put(
+      const { data: res } = await axios.patch(
         `http://localhost:3000/api/users/${userId}`,
         {
           name: nameInput,
@@ -56,6 +57,25 @@ const Edit = ({ user }: { user: User }) => {
       alert("Preencha os campos");
     }
   };
+
+  // const handleSaveForm = async () => {
+  //   if (nameInput && emailInput && departmentInput) {
+  //   const req = await fetch(`http://localhost:3000/api/users/${userId}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       name: nameInput,
+  //       email: emailInput,
+  //       departmentId: departments,
+  //     }),
+  //   });
+  //   // const json = await req.json();
+  //   // if (json.status === 200) {
+  //     router.push("/users");
+  //   }
+  // };
 
   return (
     <div className="container">
@@ -88,7 +108,7 @@ const Edit = ({ user }: { user: User }) => {
             value={departments}
           >
             <option> Selecione um Departamento </option>
-            {departmentInput.map((item: any, index) => {
+            {departmentInput.map((item: any, index: Key | null) => {
               return (
                 <option key={index} value={item.id}>
                   {item.name}
@@ -124,7 +144,7 @@ export async function getStaticPaths() {
   const paths = data.map((user: User) => {
     return {
       params: {
-        id: user.id.toString(),
+        id: user.id,
       },
     };
   });

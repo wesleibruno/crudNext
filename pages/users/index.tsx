@@ -23,7 +23,7 @@ const Home = () => {
   function handleDeleteUser(id: string) {
     try {
       if (confirm("Are you sure you want to delete this user?")) {
-        axios.patch(`http://localhost:3000/api/users/${id}`);
+        axios.delete(`http://localhost:3000/api/users/${id}`);
         setUsers(users.filter((user: User) => user.id !== id));
       }
     } catch (error) {
