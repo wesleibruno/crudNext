@@ -1,3 +1,4 @@
+import { slice } from "lodash";
 import Link from "next/link";
 
 type Post = {
@@ -31,7 +32,7 @@ export async function getStaticProps() {
   const data = await res.json();
   return {
     props: {
-      posts: data,
+      posts: data.slice(0, 3),
     },
   };
 }

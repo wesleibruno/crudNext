@@ -16,18 +16,29 @@ function Post({ post }: { post: Post }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const data = await res.json();
-  const paths = data.map((post: Post) => {
-    return {
-      params: {
-        postId: post.id.toString(),
-      },
-    };
-  });
+  // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  // const data = await res.json();
+  // const paths = data.map((post: Post) => {
+  //   return {
+  //     params: {
+  //       postId: post.id.toString(),
+  //     },
+  //   };
+  // });
 
   return {
-    paths,
+    paths: [
+      {
+        params: {postId: "1"},
+      },
+      {
+        params: {postId: "2"},
+      },
+      {
+        params: {postId: "3"},
+      },
+    ],
+    // paths,
     fallback: false,
   };
 }
