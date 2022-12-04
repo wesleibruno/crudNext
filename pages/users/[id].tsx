@@ -5,6 +5,8 @@ import { Key, useEffect, useState } from "react";
 import React from "react";
 import { User } from "../../types/User";
 
+var url = process.env.URL;
+
 const Edit = ({ user }: { user: User }) => {
   const router = useRouter();
   const userId = router.query.id;
@@ -52,7 +54,7 @@ const Edit = ({ user }: { user: User }) => {
       // if (json.status) {
       router.push("/users");
       // }
-      console.log(res);
+      // console.log(res);
     } else {
       alert("Preencha os campos");
     }
@@ -70,6 +72,11 @@ const Edit = ({ user }: { user: User }) => {
   //       email: emailInput,
   //       departmentId: departments,
   //     }),
+  //   }).catch((err) => {
+  //     if(err) {
+  //       console.log(err);
+  //       alert("Error: " + err.message);
+  //     }
   //   });
   //   // const json = await req.json();
   //   // if (json.status === 200) {
@@ -139,7 +146,7 @@ const Edit = ({ user }: { user: User }) => {
 };
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/users");
+  const res = await fetch(`${url}/api/users`);
   const data = await res.json();
   const paths = data.map((user: User) => {
     return {
@@ -157,7 +164,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const { params } = context;
-  const res = await fetch(`http://localhost:3000/api/users/${params.id}`);
+  const res = await fetch(`${url}/api/users/${params.id}`);
   const user = await res.json();
   return {
     props: {

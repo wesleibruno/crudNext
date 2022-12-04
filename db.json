@@ -1,0 +1,166 @@
+{
+    "products": [
+            {
+                "id":1,
+                "title":"Product 1",
+                "category": "electronics",
+                "price": 100,
+                "description": "Product 1 description"
+            },
+            {
+                "id":2,
+                "title":"Product 2",
+                "category": "electronics",
+                "price": 200,
+                "description": "Product 2 description"
+            },
+            {
+                "id":3,
+                "title":"Product 3",
+                "category": "electronics",
+                "price": 300,
+                "description": "Product 3 description"
+            },
+            {
+                "id":4,
+                "title":"Product 4",
+                "category": "electronics",
+                "price": 400,
+                "description": "Product 4 description"
+            },
+            {
+                "id":5,
+                "title":"Product 5",
+                "category": "electronics",
+                "price": 500,
+                "description": "Product 5 description"
+            },
+            {
+                "id":6,
+                "title":"Product 6",
+                "category": "electronics",
+                "price": 600,
+                "description": "Product 6 description"
+            },
+            {
+                "id":7,
+                "title":"Product 7",
+                "category": "electronics",
+                "price": 700,
+                "description": "Product 7 description"
+            },
+            {
+                "id":8,
+                "title":"Product 8",
+                "category": "electronics",
+                "price": 800,
+                "description": "Product 8 description"
+            },
+            {
+                "id":9,
+                "title":"Product 9",
+                "category": "electronics",
+                "price": 900,
+                "description": "Product 9 description"
+            },
+            {
+                "id":10,
+                "title":"Product 10",
+                "category": "music",
+                "price": 1000,
+                "description": "Product 10 description"
+            }
+        ],
+  
+    "reviews": [
+        {
+            "id": 1,
+            "rating": 3,
+            "comment": "Review 1 for id 1",
+            "productId": 1
+        },
+        {
+            "id": 2,
+            "rating": 4,
+            "comment": "Review 2 for id 1",
+            "productId": 1
+        },
+        {
+            "id": 3,
+            "rating": 5,
+            "comment": "Review 3 for id 1",
+            "productId": 1
+        },
+        {
+            "id": 4,
+            "rating": 5,
+            "comment": "Review 4 for id 1",
+            "productId": 3
+        }
+
+    ],
+    "news":[
+        {
+            "id": 1,
+            "title": "News 1",
+            "description": "News 1 description",
+            "category": "electronics"
+        },
+        {
+            "id": 2,
+            "title": "News 2",
+            "description": "News 2 description",
+            "category": "electronics"
+        },
+        {
+            "id": 3,
+            "title": "News 3",
+            "description": "News 3 description",
+            "category": "music"
+        },
+        {
+            "id": 4,
+            "title": "News 4",
+            "description": "News 4 description",
+            "category": "electronics"
+        },
+        {
+            "id": 5,
+            "title": "News 5",
+            "description": "News 5 description",
+            "category": "electronics"
+        },
+        {
+            "id": 6,
+            "title": "News 6",
+            "description": "News 6 description",
+            "category": "electronics"
+        },
+        {
+            "id": 7,
+            "title": "News 7",
+            "description": "News 7 description",
+            "category": "electronics"
+        },
+        {
+            "id": 8,
+            "title": "News 8",
+            "description": "News 8 description",
+            "category": "electronics"
+        },
+        {
+            "id": 9,
+            "title": "News 9",
+            "description": "News 9 description",
+            "category": "people"
+        },
+        {
+            "id": 10,
+            "title": "News 10",
+            "description": "News 10 description",
+            "category": "furniture"
+        }
+    ]
+}
+
+

@@ -28,12 +28,14 @@ function PostList({ posts }: { posts: Post[] }) {
 }
 
 export async function getStaticProps() {
+  console.log(`Generating / Regenerating ProductList`);
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
   return {
     props: {
-      posts: data.slice(0, 3),
+      posts: data,
     },
+    revalidate: 10,
   };
 }
 
